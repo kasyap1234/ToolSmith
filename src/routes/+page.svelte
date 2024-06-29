@@ -16,3 +16,10 @@
 <p class="content-center text-white text-xl  font-bold"> An all in one tools place for your needs </p>
 
     </div>
+<div class="flex justify-evenly mt-20"> 
+     <p class="content-center text-black text-2xl font-bold"> Financial calculation tools like SIP , investment , savings calculator, investment planner etc . 
+     </p>
+    <img class="w-72 h-auto rounded-lg" src="./stocks.png" alt="stocks" /> 
+   
+
+    </div>
