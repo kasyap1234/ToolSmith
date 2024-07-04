@@ -3,9 +3,6 @@
 //   content: ['./src/**/*.{html,js,svelte,ts}'],
 //   theme: {
     
-//       fontFamily:{
-//         'new': ['"Andika", "sans-serif"']
-//       },
     
 //     extend: {}
 //   },
@@ -19,6 +16,10 @@ export default {
   content: ['./src/**/*.{html,js,svelte,ts}', './node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'],
 
   theme: {
+
+          fontFamily:{
+            'new': ['"Andika", "sans-serif"']
+          },
     extend: {
       colors: {
         // flowbite-svelte

@@ -10,7 +10,7 @@
 
 
 <slot/> 
-<Footer /> 
+<Footer  /> 
 <style> 
 
 </style> 

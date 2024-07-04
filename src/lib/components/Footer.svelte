@@ -1,6 +1,6 @@
 <script> 
 </script> 
-<div class=" font-new flex-column bg-black text-center p-4 " > 
+<div class=" font-new flex-column bg-black text-center p-4 mt-4 " > 
     <p class="text-white font-thin text-sm "> copyright @ 2024 All Rights Reserved  </p>
    
 
