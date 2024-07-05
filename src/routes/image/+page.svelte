@@ -53,7 +53,7 @@ import {Spinner, Button,Input } from 'flowbite-svelte';
     />
   </div>
   <div class="mx-auto">
-  <Button class="bg-violet-500 mx-auto  hover:bg-violet-600" on:click={generateImage} disabled={loading}>Generate Image</Button>
+  <Button class="bg-violet-500 mx-auto  hover:bg-violet-600 mt-1" on:click={generateImage} disabled={loading}>Generate Image</Button>
 
 </div>
   {#if loading}
