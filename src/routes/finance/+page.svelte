@@ -67,7 +67,7 @@
     <Button type="submit" class="mb-4 bg-blue-600 hover:bg-blue-500">Calculate</Button>
 
     <Label type="text" id="total" class="mb-4">Total</Label>
-    <p class="text-green-400  text-xl font-medium text-center">Final Amount is : {$Total}</p> <!-- Bind Total store directly here -->
+    <p class="text-green-400  text-xl font-medium text-center mb-24">Final Amount is : {$Total}</p> <!-- Bind Total store directly here -->
 
   </form>
 </div>
