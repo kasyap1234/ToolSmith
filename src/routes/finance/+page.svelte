@@ -58,7 +58,7 @@
 
     <Label class="mb-4" for="gain">Yearly Increment</Label>
     <Range class="mb-4" id="gain" min="0" max="200" bind:value={$Interest} /> 
-    <Input type="number" id="gain" bind:value={$Interest} />
+    <Input type="number" class="mb-4" id="gain" bind:value={$Interest} />
 
     <Label class="mb-4" for="time">Duration</Label>
     <Range class="mb-4" id="time" min="1" max="100" bind:value={$Duration} />
@@ -67,7 +67,7 @@
     <Button type="submit" class="mb-4 bg-blue-600 hover:bg-blue-500">Calculate</Button>
 
     <Label type="text" id="total" class="mb-4">Total</Label>
-    <p class="text-green-400  text-xl font-medium text-center mb-24">Final Amount is : {$Total}</p> <!-- Bind Total store directly here -->
+    <p class="text-green-400  text-xl font-medium text-center ">Final Amount is : {$Total}</p> <!-- Bind Total store directly here -->
 
   </form>
 </div>

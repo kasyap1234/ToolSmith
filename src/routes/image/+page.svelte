@@ -67,6 +67,7 @@ import {Spinner, Button,Input } from 'flowbite-svelte';
 
   {#if imageUrl && !loading}
     <div class="w-full h-auto mt-6">
+      
       <img src={imageUrl} alt="Generated Image" />
     </div>
   {/if}
