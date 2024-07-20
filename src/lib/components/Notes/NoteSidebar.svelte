@@ -7,10 +7,8 @@ const dispatch=createEventDispatcher();
 
 
 async function handleCreateNote(title,description){
-    const newNote= await createNote(title,description);
-    if(newNote){
-        dispatch("created",{noteID: newNote.ID})
-    }
+    
+  
 }
 function handleNoteClick(noteID){
     dispatch("selectnote",{noteID}); 
