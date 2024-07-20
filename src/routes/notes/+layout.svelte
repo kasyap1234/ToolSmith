@@ -5,6 +5,7 @@ let noteID=null ;
 function handleSelectNote(event){
     noteID=event.detail.noteID;
 }
+
 </script>
 <div class="flex"> 
     <div class="w-1/4 bg-gray-300"> 
@@ -17,6 +18,8 @@ function handleSelectNote(event){
     </div>
 </div> 
 <slot> </slot>
+
+
 
 
 

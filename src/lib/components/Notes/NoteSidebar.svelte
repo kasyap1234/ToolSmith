@@ -1,12 +1,13 @@
 <script> 
-import {onMount} from'svelte';
-import {notes,fetchNotes,createNote} from "$lib/components/Notes/NoteStore.js";
+
+import {notes,createNote} from '$lib/stores/NoteStore.js'; 
+
 import {createEventDispatcher} from "svelte";
 const dispatch=createEventDispatcher();
 
-onMount(fetchNotes); 
-async function handleCreateNote(){
-    const newNote= await createNote();
+
+async function handleCreateNote(title,description){
+    const newNote= await createNote(title,description);
     if(newNote){
         dispatch("created",{noteID: newNote.ID})
     }
@@ -15,10 +16,13 @@ function handleNoteClick(noteID){
     dispatch("selectnote",{noteID}); 
 
 }
+
+
 </script> 
 <div > 
+    {#if $notes}
     <h2 class="text-xl font-semibold mb-4"> Notes </h2>
-    <button on:click={handleCreateNote} class="bg-violet-500 text-white p-2 rounded-lg"> Add Note </button>
+    <button on:click={()=> handleCreateNote(note.Title,note.Description)} class="bg-violet-500 text-white p-2 rounded-lg"> Add Note </button>
 
     {#each $notes as note(note.ID)}
     <div class="mb-2"> 

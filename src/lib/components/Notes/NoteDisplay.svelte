@@ -1,36 +1,27 @@
 <script>
-	import { onMount } from "svelte";
-	import { writable } from "svelte/store";
-	import { getNote, updateNote } from "$lib/components/Notes/NoteStore.js";
+import {updateNote,notes} from '$lib/stores/NoteStore.js'; 
+export let noteID; 
 
-	export let noteID;
-	let note = writable({
-		ID: "",
-		Title: "",
-		Description: "",
-	});
-	let isEditing = false;
+$: note=noteID ? $notes.find(n => n.ID==noteID): null;
+let isEditing=false; 
+function handleSaveNote(){
+if(note){
+	try {
+	updateNote(noteID,{Title: note.Title,Description: note.Description})
 
-	async function fetchNoteDetails() {
-		if (noteID) {
-			note = await getNote(noteID);
-			isEditing = false;
-		}
+	isEditing=false; 
+
 	}
-	async function handleSaveNote() {
-		const updatedNote = await updateNote(noteID, note);
-        if(updatedNote){
-            isEditing=false;
-            return updatedNote; 
-            
-        }
-		
-	}
+	catch(err){
+		console.err("Error updating note",err);
 
-	$: if (noteID) fetchNoteDetails();
+	}
+}
+}
+
 </script>
 
-{#if note.ID}
+{#if note}
 <div> 
     {#if isEditing}
     <input bind:value={note.Title} class="text-2xl font-semibold mb-4 2-full" /> 
