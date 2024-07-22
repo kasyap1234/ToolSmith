@@ -8,8 +8,8 @@ async function handleCreateNote() {
     const newNote = await createNote('New Note', '');
     console.log(newNote);
     console.log("store notes are ",$notes); 
-    
-    dispatch("selectnote", { noteID: newNote.ID });
+
+    dispatch("selectnote", { noteID: newNote.id });
 }
 
 function handleNoteClick(noteID) {
@@ -28,7 +28,7 @@ function handleNoteClick(noteID) {
         New Note
     </button>
 
-    {#each $notes as note (note.ID)}
+    {#each $notes as note (note.id)}
         <div class="mb-2">
             <button 
                 on:click={() => handleNoteClick(note.ID)} 

@@ -6,6 +6,7 @@ let selectedNoteID = null;
 
 function handleNoteSelect(event) {
     selectedNoteID = event.detail.noteID;
+    console.log("selectedNoteID",selectedNoteID)
 }
 </script>
 

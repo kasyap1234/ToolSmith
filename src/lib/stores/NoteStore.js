@@ -38,7 +38,7 @@ export async function updateNote(id, updatedNote) {
     if (res.ok) {
         const data = await res.json();
         notes.update(currentNotes => {
-            const index = currentNotes.findIndex(note => note.ID === id);
+            const index = currentNotes.findIndex(note => note.id === id);
             if (index !== -1) {
                 currentNotes[index] = data;
             }

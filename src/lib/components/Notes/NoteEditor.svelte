@@ -4,7 +4,7 @@ import {notes, updateNote, deleteNote} from "$lib/stores/NoteStore.js";
 
 export let noteID;
 
-$: note = $notes.find(n => n.ID === noteID);
+$: note = $notes.find(n => n.id === noteID);
 $: Title = note ? note.Title : '';
 $: Description = note ? note.Description : '';
 
