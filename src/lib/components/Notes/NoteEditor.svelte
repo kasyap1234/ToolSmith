@@ -1,12 +1,12 @@
 <script>
-import {onMount, onDestroy} from "svelte"; 
-import {notes, updateNote, deleteNote} from "$lib/stores/NoteStore.js";
+import { onMount, onDestroy } from "svelte"; 
+import { notes, updateNote, deleteNote } from "$lib/stores/NoteStore.js";
 
-export let noteID;
+export let noteId;
 
-$: note = $notes.find(n => n.id === noteID);
-$: Title = note ? note.Title : '';
-$: Description = note ? note.Description : '';
+$: note = $notes.find(n => n.id === noteId);
+$: title = note ? note.title : '';
+$: content = note ? note.content : '';
 
 let isDirty = false; 
 let syncInterval; 
@@ -17,7 +17,7 @@ function markDirty() {
 
 async function syncNote() {
     if (isDirty && note) {
-        await updateNote(noteID, {Title, Description});
+        await updateNote(noteId, { title, content });
         isDirty = false; 
     }
 }
@@ -33,19 +33,15 @@ onDestroy(() => {
 
 async function handleDelete() {
     if (note) {
-        await deleteNote(noteID);
+        await deleteNote(noteId);
     }
-}
-
-if (typeof window !== 'undefined') {
-    window.addEventListener('beforeunload', syncNote);
 }
 </script> 
 
 <div> 
     {#if note}
-        <input bind:value={Title} on:input={markDirty} class="text-2xl font-bold w-full p-2 border rounded-md" /> 
-        <textarea bind:value={Description} on:input={markDirty} class="w-full p-2 border rounded-md" rows="10"></textarea>
+        <input bind:value={title} on:input={markDirty} class="text-2xl font-bold w-full p-2 border rounded-md" /> 
+        <textarea bind:value={content} on:input={markDirty} class="w-full p-2 border rounded-md" rows="10"></textarea>
         <button on:click={handleDelete} class="bg-red-500 text-white p-2 rounded-md">Delete</button>
     {:else}
         <p>Loading note...</p>

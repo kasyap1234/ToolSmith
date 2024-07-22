@@ -1,21 +1,16 @@
 <script>
-import {notes, createNote} from "$lib/stores/NoteStore.js";
+import { notes, createNote } from "$lib/stores/NoteStore.js";
 import { createEventDispatcher } from "svelte";
 
 const dispatch = createEventDispatcher();
 
 async function handleCreateNote() {
     const newNote = await createNote('New Note', '');
-    console.log(newNote);
-    console.log("store notes are ",$notes); 
-
-    dispatch("selectnote", { noteID: newNote.id });
+    dispatch("selectnote", { noteId: newNote.id });
 }
 
-function handleNoteClick(noteID) {
-    console.log("handleNoteClick" ,noteID); 
-
-    dispatch("selectnote", { noteID });
+function handleNoteClick(id) {
+    dispatch("selectnote", { noteId: id });
 }
 </script>
 
@@ -31,10 +26,10 @@ function handleNoteClick(noteID) {
     {#each $notes as note (note.id)}
         <div class="mb-2">
             <button 
-                on:click={() => handleNoteClick(note.ID)} 
+                on:click={() => handleNoteClick(note.id)} 
                 class="bg-gray-100 p-2 rounded-lg w-full text-left hover:bg-gray-200 transition-colors"
             >
-                <h3 class="font-semibold truncate">{note.Title || 'Untitled'}</h3>
+                <h3 class="font-semibold truncate">{note.title || 'Untitled'}</h3>
             </button>
         </div>
     {/each}

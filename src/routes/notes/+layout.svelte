@@ -1,13 +1,16 @@
 <script>
 import NoteSidebar from '$lib/components/Notes/NoteSidebar.svelte';
 import NoteEditor from '$lib/components/Notes/NoteEditor.svelte';
+import { fetchNotes } from '$lib/stores/NoteStore.js';
+import { onMount } from 'svelte';
 
-let selectedNoteID = null;
+let selectedNoteId = null;
 
 function handleNoteSelect(event) {
-    selectedNoteID = event.detail.noteID;
-    console.log("selectedNoteID",selectedNoteID)
+    selectedNoteId = event.detail.noteId;
 }
+
+onMount(fetchNotes);
 </script>
 
 <div class="flex">
@@ -15,13 +18,12 @@ function handleNoteSelect(event) {
         <NoteSidebar on:selectnote={handleNoteSelect} />
     </div>
     <div class="w-2/3">
-        {#if selectedNoteID}
-            <NoteEditor noteID={selectedNoteID} />
+        {#if selectedNoteId}
+            <NoteEditor noteId={selectedNoteId} />
         {:else}
             <p>Select a note or create a new one</p>
         {/if}
     </div>
 </div>
 
-<slot /> 
-
+<slot />
