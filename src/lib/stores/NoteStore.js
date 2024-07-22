@@ -50,11 +50,11 @@ export async function updateNote(id, updatedNote) {
 }
 
 export async function deleteNote(id){
-    const res=await fetch(`http://localhost:3000/notehandler/notes/${ID}`,{
+    const res=await fetch(`http://localhost:3000/notehandler/notes/${id}`,{
         method:'DELETE'
     })
     if(res.ok){
-        notes.update(notes => notes.filter(note => note.ID !== id));
+        notes.update(notes => notes.filter(note => note.id!== id));
         return ;}
         else{
             throw new Error('Failed to delete note');
