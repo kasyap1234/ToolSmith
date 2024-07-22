@@ -1,37 +1,41 @@
-<script> 
+<script>
+import {notes, createNote} from "$lib/stores/NoteStore.js";
+import { createEventDispatcher } from "svelte";
 
-import {notes,createNote} from '$lib/stores/NoteStore.js'; 
+const dispatch = createEventDispatcher();
 
-import {createEventDispatcher} from "svelte";
-const dispatch=createEventDispatcher();
-
-
-async function handleCreateNote(title,description){
+async function handleCreateNote() {
+    const newNote = await createNote('New Note', '');
+    console.log(newNote);
+    console.log("store notes are ",$notes); 
     
-  
-}
-function handleNoteClick(noteID){
-    dispatch("selectnote",{noteID}); 
-
+    dispatch("selectnote", { noteID: newNote.ID });
 }
 
+function handleNoteClick(noteID) {
+    console.log("handleNoteClick" ,noteID); 
 
-</script> 
-<div > 
-    {#if $notes}
-    <h2 class="text-xl font-semibold mb-4"> Notes </h2>
-    <button on:click={()=> handleCreateNote(note.Title,note.Description)} class="bg-violet-500 text-white p-2 rounded-lg"> Add Note </button>
+    dispatch("selectnote", { noteID });
+}
+</script>
 
-    {#each $notes as note(note.ID)}
-    <div class="mb-2"> 
-       <button on:click={()=> handleNoteClick(note.ID)} class="bg-gray=100 p-2 rounded-lg w-full text-center"> <h3 class="font-semibold">{note.Title}</h3></button>
+<div class="p-4">
+    <h2 class="text-xl font-semibold mb-4">Notes</h2>
+    <button 
+        on:click={handleCreateNote} 
+        class="bg-violet-500 text-white p-2 rounded-lg mb-4 w-full"
+    >
+        New Note
+    </button>
 
-        
-          </div>
-          {:else}
-          <p> No Notes found </p>
-          {/each}
-
-          
-    </div>
-
+    {#each $notes as note (note.ID)}
+        <div class="mb-2">
+            <button 
+                on:click={() => handleNoteClick(note.ID)} 
+                class="bg-gray-100 p-2 rounded-lg w-full text-left hover:bg-gray-200 transition-colors"
+            >
+                <h3 class="font-semibold truncate">{note.Title || 'Untitled'}</h3>
+            </button>
+        </div>
+    {/each}
+</div>

@@ -17,8 +17,11 @@ export async function createNote(title, description){
     })
     if(res.ok){
         const createdNote= await res.json(); 
-        notes.update(notes => [...notes, createdNote]);
-        return createdNote; 
+       notes.update(currentNotes => [...currentNotes, createdNote]);
+       
+
+       return notes; 
+
 
 
     }

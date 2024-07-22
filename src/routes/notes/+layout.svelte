@@ -1,27 +1,26 @@
-<script> 
-import NoteSidebar from '$lib/components/Notes/NoteSidebar.svelte'; 
-import NoteDisplay from '$lib/components/Notes/NoteDisplay.svelte'; 
-let noteID=null ; 
-function handleSelectNote(event){
-    noteID=event.detail.noteID;
+<script>
+import NoteSidebar from '$lib/components/Notes/NoteSidebar.svelte';
+import NoteEditor from '$lib/components/Notes/NoteEditor.svelte';
+
+let selectedNoteID = null;
+
+function handleNoteSelect(event) {
+    selectedNoteID = event.detail.noteID;
 }
-
 </script>
-<div class="flex"> 
-    <div class="w-1/4 bg-gray-300"> 
-<NoteSidebar on:selectNote={handleSelectNote}/>
 
-</div> 
-<div class="w-3/4 p-4 "> 
-    <NoteDisplay noteID={noteID}/> 
-
+<div class="flex">
+    <div class="w-1/3">
+        <NoteSidebar on:selectnote={handleNoteSelect} />
     </div>
-</div> 
-<slot> </slot>
+    <div class="w-2/3">
+        {#if selectedNoteID}
+            <NoteEditor noteID={selectedNoteID} />
+        {:else}
+            <p>Select a note or create a new one</p>
+        {/if}
+    </div>
+</div>
 
-
-
-
-
-
+<slot /> 
 
