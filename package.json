@@ -21,6 +21,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"bits-ui": "^0.21.11"
+		"bits-ui": "^0.21.11",
+		"lodash-es": "^4.17.21"
 	}
 }

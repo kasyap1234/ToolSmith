@@ -2,11 +2,11 @@ import { writable } from "svelte/store";
 
 export const notes=writable([]);
 
-export async function createNote(title, description){
+export async function createNote(Title, Description){
     const newNote={
       
-        Title: title, 
-        Description: description 
+        Title: Title, 
+        Description: Description 
     }
     const res=await fetch('http://localhost:3000/notehandler/notes',{
         method:'POST',
@@ -30,24 +30,19 @@ export async function createNote(title, description){
 export async function updateNote(id, updatedNote) {
     const res = await fetch(`http://localhost:3000/notehandler/notes/${id}`, {
         method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedNote)
     });
     if (res.ok) {
         const data = await res.json();
-        notes.update(currentNotes => {
-            const index = currentNotes.findIndex(note => note.id === id);
-            if (index !== -1) {
-                currentNotes[index] = data;
-            }
-            return currentNotes;
-        });
+        notes.update(currentNotes =>
+            currentNotes.map(note => note.id === id ? { ...note, ...data } : note)
+        );
         return data;
     }
     throw new Error('Failed to update note');
 }
+
 
 export async function deleteNote(id){
     const res=await fetch(`http://localhost:3000/notehandler/notes/${id}`,{
@@ -60,6 +55,7 @@ export async function deleteNote(id){
             throw new Error('Failed to delete note');
         }
     }
+
 export async function fetchNotes(){
         const res=await fetch('http://localhost:3000/notehandler/notes')
         if(res.ok){
